@@ -1,0 +1,56 @@
+.hbs-mini-font{
+    font-family:'Carrois Gothic', sans-serif;
+}
+.hbs-font{
+    font-family:'Carrois Gothic', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+.logo-container{
+    background-color: #4682B4;
+}
+
+.hbs-border{
+    border: 2px solid #4682B4;
+}
+
+.hbs-form{
+    background-color: whitesmoke;
+    padding: 30px;
+}
+
+.alert-div{
+    background-color: #ebf1f4;
+}
+
+.main{
+    width: 42%;
+    margin-top: 40px;
+}
+
+.content-div{
+    margin-top: 50px;
+    background-color: white;
+    padding: 30px;
+}
+
+.small-input{
+    width: 70%;
+}
+
+.access-input{
+    width: 30%;
+}
+
+.hbs-button{
+    background-color: #4682B4;;
+    color: white;
+}
+
+.alert-content{
+    padding-left: 40px;
+}
+
+a.navbar-brand h3{
+    color: white;
+}

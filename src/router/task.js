@@ -22,38 +22,50 @@ router.post('/tasks', auth, async (req, res) =>{
 
 // This route fetches all task from db
 // get/tasks?completed=false
-router.get('/tasks', auth, async (req, res)=>{
-    try{
-        // const task = await Task.find({owner: req.user._id})
-        // const what = req.query.completed
-        const match = {}
-        const sort = {}
+// router.get('/tasks', auth, async (req, res)=>{
+//     try{
+//         // const task = await Task.find({owner: req.user._id})
+//         // const what = req.query.completed
+//         const match = {}
+//         const sort = {}
 
 
-        // filter task
-        if(req.query.completed){
-            match.completed = req.query.completed === 'true'
-        }
+//         // filter task
+//         if(req.query.completed){
+//             match.completed = req.query.completed === 'true'
+//         }
 
-        // Sort task
-        if(req.query.sortBy){
-            const parts = req.query.sortBy.split(':')
-            sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
-        }
-        await req.user.populate({
-            path: 'tasks',
-            match,
-            // pagination
-            options:{
-                limit: parseInt(req.query.limit),
-                skip: parseInt(req.query.skip),
-                sort
-            }
-        })
-        res.send(req.user.tasks)
-    } catch(e){
-        res.status(500).send(e)
-    }
+//         // Sort task
+//         if(req.query.sortBy){
+//             const parts = req.query.sortBy.split(':')
+//             sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
+//         }
+//         await req.user.populate({
+//             path: 'tasks',
+//             match,
+//             // pagination
+//             options:{
+//                 limit: parseInt(req.query.limit),
+//                 skip: parseInt(req.query.skip),
+//                 sort
+//             }
+//         })
+//         // res.send(req.user.tasks)
+//         res.render('welcome', {
+//             task: req.user.tasks
+//         })
+//     } catch(e){
+//         res.status(500).send(e)
+//     }
+// })
+
+router.get('/tasks',  auth, async(req, res)=>{
+    const task = await Task.find({})
+    console.log(req.user);
+
+    res.render('welcome', {
+        task : task
+    })
 })
 
 // This route fetches a single task by its Id from the db
@@ -121,6 +133,9 @@ router.delete('/tasks/:id', auth, async (req, res)=>{
     }
 })
 
+router.get('/mine', (req, res)=>{
+    res.render('welcome')
+})
 
 
 module.exports = router
