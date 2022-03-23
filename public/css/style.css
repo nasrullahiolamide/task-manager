@@ -8,6 +8,7 @@
 }
 .logo-container{
     background-color: #4682B4;
+    color: white;
 }
 
 .hbs-border{
@@ -51,6 +52,18 @@
     padding-left: 40px;
 }
 
-a.navbar-brand h3{
+nav a{
     color: white;
+}
+
+li a{
+    color: white;
+}
+
+.taskList{
+    width:40%;
+}
+
+.content{
+    width: 90%
 }

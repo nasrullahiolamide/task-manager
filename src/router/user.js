@@ -5,20 +5,20 @@ const auth = require('../middleware/auth')
 const multer = require('multer')
 const sharp = require('sharp')
 const bodyParser = require('body-parser')
+const jwt = require('jsonwebtoken')
 
 // This route creates a new user
 router.route('/users')
 .get((req,res)=>{
-    res.render('sign-up')
+    res.render('user/sign-up')
 })
 .post(bodyParser.urlencoded({extended:true}), async (req, res) =>{
     let user = new User(req.body)
     try{
         await user.save()
-        const token = await user.generateAuthToken()
-        // res.status(201).send({user, token})
+        // const token = await user.generateAuthToken()
         console.log('User created successfully');
-        res.redirect('/tasks')
+        res.redirect('/login')
     }
     catch(e){
         res.status(400).send(e)
@@ -85,11 +85,20 @@ router.delete('/users/me', auth, async(req, res) =>{
 })
 
 // Login
-router.post('/users/login', async (req, res) =>{
+router.route('/login')
+.get((req, res)=>{
+    res.render('user/login')
+})
+.post(bodyParser.urlencoded({extended:true}), async (req, res) =>{
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
-        const token = await user.generateAuthToken()
-        res.send({user, token})
+        // const token = await user.generateAuthToken()
+        console.log(user);
+        const token = jwt.sign({ _id: user._id.toString()},'comrade', {expiresIn: '1hr'})
+        res.cookie("token", token)
+        res
+        .status(200)
+        .redirect('/tasks')
     } catch (e) {
         res.status(400).send(e)
     }
@@ -97,29 +106,23 @@ router.post('/users/login', async (req, res) =>{
  
 
 // Logout
-router.post('/users/logout', auth, async (req, res) =>{
-    try {
-        req.user.tokens = req.user.tokens.filter((token) =>{
-            return token.token !== req.token
-        })
-        await req.user.save()
-        res.send()
-    } catch(e) {
-        res.status(500).send()
-    }
+router.get('/logout', auth, async (req, res) =>{
+    return res
+    .clearCookie('token')
+    .redirect('/login')
 })
 
 
-// Remove All Sessions
-router.post('/users/logoutAll', auth, async (req, res)=>{
-    try {
-        req.user.tokens = []
-        await req.user.save()
-        res.status(200).send('All Sessions removed')
-    } catch (e) {
-        res.status(500).send()
-    }
-})
+// // Remove All Sessions
+// router.post('/users/logoutAll', auth, async (req, res)=>{
+//     try {
+//         req.user.tokens = []
+//         await req.user.save()
+//         res.status(200).send('All Sessions removed')
+//     } catch (e) {
+//         res.status(500).send()
+//     }
+// })
 
 const upload = multer({
     limits: {

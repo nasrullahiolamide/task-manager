@@ -1,0 +1,37 @@
+{{> header}}
+{{> navbar}}
+    <!-- Content -->
+    <div class="container main">
+
+        <div class="card hbs-border content-div">
+            <div class="ps-3">
+                <h2 class="hbs-mini-font">Log IN</h2>
+
+                <div class="hbs-form hbs-font">
+                    <form action="/login" method="post">
+                      <!-- Email input -->
+                    <div class="mb-3 small-input">
+                        <label for="exampleInputEmail1" class="form-label">Email:</label>
+                        <input type="email" class="form-control form-input" id="exampleInputEmail1" name="email" >
+                      </div>
+
+                      <!-- Password input -->
+                      <div class="mb-3 small-input">
+                        <label for="exampleInputPassword1" class="form-label">Password:</label>
+                        <input type="password" class="form-control form-input" name="password" id="exampleInputPassword1">
+                      </div>
+                      
+
+                      <button type="submit" class="btn hbs-button">Submit</button>
+                    </form>
+                    <p>Don't have an account? <a href="/users">Register</a></p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    
+{{> footer}}

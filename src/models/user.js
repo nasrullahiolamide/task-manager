@@ -81,8 +81,9 @@ userSchema.methods.toJSON = function (){
 userSchema.methods.generateAuthToken = async function(){
     const user = this
     const token = jwt.sign({ _id: user._id.toString()}, 'comrade')
-    user.tokens = user.tokens.concat({token})
-    await user.save()
+    console.log(user);
+    // user.tokens = user.tokens.concat({token})
+    // await user.save()
 
     return token
 }
@@ -99,7 +100,6 @@ userSchema.statics.findByCredentials = async (email, password) =>{
     if(!isMatch){
         throw new Error('Unable to login')
     }
-
     return user
 }
 

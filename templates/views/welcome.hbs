@@ -1,13 +1,31 @@
 {{> header}}
-{{> navbar}}
+{{> navbar}}  
 
-{{#each task }}
-    <p>
-        {{this.task}}
-    </p>
+<div class="container-fluid content">
+<a href="/tasks/new" class="btn btn-success btn-inverse mt-4">Add new tasks</a> 
+<div class="taskList mt-4">
 
-{{/each}}
+<ul class="list-group list-group-square">
+     {{#each task }} 
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+        <h5>
+            {{this.task}} 
+        </h5>
+        </div>
+        <span class="badge bg-success rounded-pill">
+             {{update this._id}}
+        </span>
+        &nbsp;
+        <span class="badge bg-danger rounded-pill">
+             {{delete this._id}}
+        </span>
+    </li>
+    {{/each}}
+    </ul>
 
+</div>
 
+</div>
 
 {{> footer}} 
