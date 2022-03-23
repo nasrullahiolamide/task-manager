@@ -7,6 +7,11 @@ const sharp = require('sharp')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
 
+
+router.get('/', (req,res)=>{
+    res.redirect('/login')
+})
+
 // This route creates a new user
 router.route('/users')
 .get((req,res)=>{
