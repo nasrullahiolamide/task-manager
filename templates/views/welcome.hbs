@@ -9,15 +9,13 @@
      {{#each task }} 
     <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <h5>
             {{this.task}} 
-        </h5>
         </div>
-        <span class="badge bg-success rounded-pill">
+        <span class="badge bg-success">
              {{update this._id}}
         </span>
         &nbsp;
-        <span class="badge bg-danger rounded-pill">
+        <span class="badge bg-danger">
              {{delete this._id}}
         </span>
     </li>

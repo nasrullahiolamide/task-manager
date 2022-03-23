@@ -105,7 +105,7 @@ router.route('/login')
         .status(200)
         .redirect('/tasks')
     } catch (e) {
-        res.status(400).send(e)
+        res.redirect('/login')
     }
 }) 
  

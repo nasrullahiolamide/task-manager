@@ -1,48 +1,23 @@
 {{> header}}
 {{> navbar}}
-    <!-- Content -->
-    <div class="container main">
-
-        <div class="card hbs-border content-div">
-            <div class="ps-3">
-                <h2 class="hbs-mini-font">Create Your Account</h2>
-
-                <div class="hbs-form hbs-font">
-                    <form action="/users" method="post">
-                    <!-- Name input -->
-                    <div class="mb-3 small-input">
-                        <label for="exampleInputName" class="form-label">Name:</label>
-                        <input type="name" class="form-control form-input" id="exampleInputName" name="name">
-                      </div>
-
-                      <!-- Email input -->
-                    <div class="mb-3 small-input">
-                        <label for="exampleInputEmail1" class="form-label">Email:</label>
-                        <input type="email" class="form-control form-input" id="exampleInputEmail1" name="email" >
-                      </div>
-
-                      <!-- Password input -->
-                      <div class="mb-3 small-input">
-                        <label for="exampleInputPassword1" class="form-label">Password:</label>
-                        <input type="password" class="form-control form-input" name="password" id="exampleInputPassword1">
-                      </div>
-
-                      <!-- Age input -->
-                      <div class="mb-3 small-input">
-                        <label for="exampleInputFName" class="form-label">Age <small>(optional)</small></label>
-                        <input type="text" class="form-control form-input" name="age" id="exampleInputFName">
-                      </div>
-                      
-
-                      <button type="submit" class="btn hbs-button">Submit</button>
-                    </form>
-                </div>
-            </div>
-
+   <div class="login-form">    
+    <form action="/login" method="post">
+		<div class="avatar1" ><i class="material-icons">&#xE7FF;</i></div>
+    	<h4 class="modal-title" style="color: #af1717;">Create an account to use the Task App</h4>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Name" required="require" name="name">
         </div>
-
-
-    </div>
-
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Email Address" required="required" name="email">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" required="required" name="password">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Age (Optional)"  name="age">
+        </div>
+        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign Up">              
+    </form>			
+</div>
     
 {{> footer}}
