@@ -101,6 +101,7 @@ router.route('/login')
         console.log(user);
         const token = jwt.sign({ _id: user._id.toString()},'comrade', {expiresIn: '1hr'})
         res.cookie("token", token)
+        console.log('logged in successfully')
         res
         .status(200)
         .redirect('/tasks')
