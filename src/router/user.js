@@ -17,7 +17,7 @@ router.route('/users')
 .get((req,res)=>{
     res.render('user/sign-up')
 })
-.post(bodyParser.urlencoded({extended:true}), async (req, res) =>{
+.post(bodyParser.urlencoded({extended:false}), async (req, res) =>{
     let user = new User(req.body)
     try{
         await user.save()
@@ -94,7 +94,7 @@ router.route('/login')
 .get((req, res)=>{
     res.render('user/login')
 })
-.post(bodyParser.urlencoded({extended:true}), async (req, res) =>{
+.post(bodyParser.urlencoded({extended:false}), async (req, res) =>{
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
         // const token = await user.generateAuthToken()
