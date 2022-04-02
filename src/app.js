@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(userRouter)
 app.use(taskRouter) 
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
 
@@ -34,10 +34,6 @@ hbs.registerHelper("delete", function(p2){
 
     return new hbs.handlebars.SafeString("<a href='/tasks/remove/" + taskId +  "'>" + "Remove Task</a>")
 })
-
-
-
-
 
 
 module.exports = app
