@@ -98,7 +98,7 @@ router.route('/login')
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
         // const token = await user.generateAuthToken()
-        console.log(user);
+        // console.log(user);
         const token = jwt.sign({ _id: user._id.toString()},'comrade', {expiresIn: '1hr'})
         res.cookie("token", token)
         console.log('logged in successfully')
